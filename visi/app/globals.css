@@ -51,7 +51,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border;
   }
   body {
     @apply bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-foreground;
