@@ -50,11 +50,14 @@
 }
 
 @layer base {
-  * {
-    @apply border;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
+  
   body {
-    @apply bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-foreground;
+    @apply bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 text-white;
     background-attachment: fixed;
   }
 }
@@ -186,9 +189,9 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
-}
