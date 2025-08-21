@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Sparkles, Heart, Star, Plus, Trash2, Download, Zap, Crown, Gem, Rocket, Wand2 } from "lucide-react"
-import { generateVisionImage } from "./actions/generate-image"
+// Short, clean imports
+import { generateImage } from "./actions/ai-image"
+import { generateFree } from "./actions/free-ai"
 
 interface VisionItem {
   id: string
@@ -25,42 +26,42 @@ const categories = [
     value: "career",
     label: "Career",
     icon: Rocket,
-    color: "bg-gradient-to-r from-blue-400 to-blue-600",
+    color: "bg-gradient-to-r from-blue-500 to-blue-600",
     textColor: "text-white",
   },
   {
     value: "health",
     label: "Health",
     icon: Heart,
-    color: "bg-gradient-to-r from-green-400 to-emerald-600",
+    color: "bg-gradient-to-r from-green-500 to-emerald-600",
     textColor: "text-white",
   },
   {
     value: "relationships",
     label: "Love",
     icon: Heart,
-    color: "bg-gradient-to-r from-pink-400 to-rose-600",
+    color: "bg-gradient-to-r from-pink-500 to-rose-600",
     textColor: "text-white",
   },
   {
     value: "travel",
     label: "Adventure",
     icon: Star,
-    color: "bg-gradient-to-r from-purple-400 to-indigo-600",
+    color: "bg-gradient-to-r from-purple-500 to-indigo-600",
     textColor: "text-white",
   },
   {
     value: "personal",
     label: "Growth",
     icon: Wand2,
-    color: "bg-gradient-to-r from-yellow-400 to-orange-600",
+    color: "bg-gradient-to-r from-yellow-500 to-orange-600",
     textColor: "text-white",
   },
   {
     value: "financial",
     label: "Wealth",
     icon: Crown,
-    color: "bg-gradient-to-r from-emerald-400 to-teal-600",
+    color: "bg-gradient-to-r from-emerald-500 to-teal-600",
     textColor: "text-white",
   },
 ]
@@ -89,19 +90,8 @@ const FloatingParticles = () => {
 const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-pink-900/20 to-blue-900/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div
-          className="absolute top-3/4 right-1/4 w-96 h-96 bg-pink-300/10 rounded-full blur-3xl animate-pulse-slow"
-          style={{ animationDelay: "2s" }}
-        />
-        <div
-          className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-pulse-slow"
-          style={{ animationDelay: "4s" }}
-        />
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-pink-900 to-blue-900 opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white-10 to-transparent" />
     </div>
   )
 }
@@ -115,6 +105,7 @@ export default function VisionBoardApp() {
   })
   const [isAddingItem, setIsAddingItem] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [useFreeAI, setUseFreeAI] = useState(true) // Toggle between free and HF
 
   useEffect(() => {
     setMounted(true)
@@ -137,7 +128,12 @@ export default function VisionBoardApp() {
     setIsAddingItem(false)
 
     try {
-      const imageUrl = await generateVisionImage(newItem.description)
+      console.log("Starting image generation for:", newItem.description)
+
+      // Use either free AI or Hugging Face AI
+      const imageUrl = useFreeAI ? await generateFree(newItem.description) : await generateImage(newItem.description)
+
+      console.log("Image generation completed")
       setVisionItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, imageUrl, isGenerating: false } : i)))
     } catch (error) {
       console.error("Failed to generate image:", error)
@@ -160,7 +156,6 @@ export default function VisionBoardApp() {
       canvas.width = 1200
       canvas.height = 800
 
-      // Create gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
       gradient.addColorStop(0, "#667eea")
       gradient.addColorStop(1, "#764ba2")
@@ -202,14 +197,23 @@ export default function VisionBoardApp() {
                 <p className="text-sm text-white/60 font-medium">Manifest Your Reality</p>
               </div>
             </div>
-            <Button
-              onClick={downloadVisionBoard}
-              className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-            >
-              <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <Download className="h-4 w-4 mr-2" />
-              <span>Download Magic</span>
-            </Button>
+            <div className="flex items-center space-x-4">
+              {/* AI Toggle */}
+              <Button
+                onClick={() => setUseFreeAI(!useFreeAI)}
+                variant="outline"
+                className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 transition-all duration-300"
+              >
+                {useFreeAI ? "Free AI" : "HF AI"}
+              </Button>
+              <Button
+                onClick={downloadVisionBoard}
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                <span>Download Magic</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -265,16 +269,18 @@ export default function VisionBoardApp() {
               {
                 step: "2",
                 title: "AI Creates",
-                description: "Our mystical AI brings your visions to stunning life",
+                description: useFreeAI
+                  ? "Free AI brings your visions to stunning life"
+                  : "Qwen AI brings your visions to stunning life",
                 icon: Sparkles,
-                color: "from-pink-500 to-blue-500",
+                color: useFreeAI ? "from-pink-500 to-blue-500" : "from-blue-500 to-purple-500",
               },
               {
                 step: "3",
                 title: "Manifest",
                 description: "Visualize daily and watch reality bend to your will",
                 icon: Crown,
-                color: "from-blue-500 to-purple-500",
+                color: useFreeAI ? "from-blue-500 to-purple-500" : "from-purple-500 to-blue-500",
               },
             ].map((step, index) => (
               <Card
@@ -438,7 +444,9 @@ export default function VisionBoardApp() {
                               <Sparkles className="h-12 w-12 text-purple-400 mx-auto animate-spin-slow" />
                               <div className="absolute inset-0 bg-purple-400/20 rounded-full animate-ping" />
                             </div>
-                            <p className="text-white/80 font-medium">Manifesting your vision...</p>
+                            <p className="text-white/80 font-medium">
+                              {useFreeAI ? "Free AI manifesting..." : "Qwen AI manifesting..."}
+                            </p>
                             <div className="mt-2 flex justify-center space-x-1">
                               {[...Array(3)].map((_, i) => (
                                 <div
@@ -456,12 +464,15 @@ export default function VisionBoardApp() {
                             src={item.imageUrl || "/placeholder.svg"}
                             alt={item.title}
                             className="w-full h-56 object-cover transition-transform duration-700 group-hover/image:scale-110"
+                            crossOrigin="anonymous"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <div className="flex items-center space-x-2 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
                               <Sparkles className="h-3 w-3 text-yellow-400" />
-                              <span className="text-xs text-white font-medium">AI Generated</span>
+                              <span className="text-xs text-white font-medium">
+                                {useFreeAI ? "Free AI" : "Qwen AI"}
+                              </span>
                             </div>
                           </div>
                         </div>
