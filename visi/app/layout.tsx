@@ -6,7 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "DreamBoard - AI-Powered Vision Board Creator",
+  title: "Visi - Complete Dream Manifestation Platform",
   description:
     "Create powerful vision boards with AI-generated images. Manifest your dreams and goals with beautiful visualizations.",
   keywords: "vision board, manifestation, AI, dreams, goals, visualization",
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={inter.className}>{children}</body>
     </html>
   )
