@@ -65,42 +65,42 @@ const categories = [
     label: "Career",
     icon: Rocket,
     color: "bg-gradient-to-r from-blue-500 to-blue-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
   {
     value: "health",
     label: "Health",
     icon: Heart,
     color: "bg-gradient-to-r from-green-500 to-emerald-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
   {
     value: "relationships",
     label: "Love",
     icon: Heart,
     color: "bg-gradient-to-r from-pink-500 to-rose-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
   {
     value: "travel",
     label: "Adventure",
     icon: Star,
     color: "bg-gradient-to-r from-purple-500 to-indigo-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
   {
     value: "personal",
     label: "Growth",
     icon: Wand2,
     color: "bg-gradient-to-r from-yellow-500 to-orange-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
   {
     value: "financial",
     label: "Wealth",
     icon: Crown,
     color: "bg-gradient-to-r from-emerald-500 to-teal-600",
-    textColor: "text-black",
+    textColor: "text-white",
   },
 ]
 
@@ -134,16 +134,16 @@ const FloatingParticles = () => {
 const AnimatedBackground = () => {
   return (
     <div className="fixed inset-0 -z-10">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-pink-900 to-blue-900 opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900/20 to-transparent" />
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl animate-pulse-slow" />
         <div
-          className="absolute top-3/4 right-1/4 w-96 h-96 bg-pink-300/10 rounded-full blur-3xl animate-pulse-slow"
+          className="absolute top-3/4 right-1/4 w-96 h-96 bg-pink-900/20 rounded-full blur-3xl animate-pulse-slow"
           style={{ animationDelay: "2s" }}
         />
         <div
-          className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-pulse-slow"
+          className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl animate-pulse-slow"
           style={{ animationDelay: "4s" }}
         />
       </div>
@@ -244,7 +244,7 @@ export default function VisiApp() {
         const width = 512
         const height = 512
         const encodedPrompt = encodeURIComponent(newItem.title)
-        imageUrl = `https://via.placeholder.com/${width}x${height}/667eea/ffffff?text=${encodedPrompt}`
+        imageUrl = `https://via.placeholder.com/${width}x${height}/1f2937/ffffff?text=${encodedPrompt}`
       }
 
       console.log("Image generation completed")
@@ -336,12 +336,12 @@ export default function VisiApp() {
       canvas.height = 800
 
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
-      gradient.addColorStop(0, "#667eea")
-      gradient.addColorStop(1, "#764ba2")
+      gradient.addColorStop(0, "#1f2937")
+      gradient.addColorStop(1, "#000000")
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.fillStyle = "#000000"
+      ctx.fillStyle = "#ffffff"
       ctx.font = "bold 48px Arial"
       ctx.textAlign = "center"
       ctx.fillText("✨ My Visi Manifestation Board ✨", canvas.width / 2, 80)
@@ -363,12 +363,12 @@ export default function VisiApp() {
       : 0
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative overflow-hidden bg-black">
       <AnimatedBackground />
       <FloatingParticles />
 
       {/* Header */}
-      <header className="relative z-20 bg-black/10 backdrop-blur-xl border-b border-black/20 sticky top-0">
+      <header className="relative z-20 bg-gray-900/50 backdrop-blur-xl border-b border-gray-800 sticky top-0">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 group">
@@ -380,20 +380,20 @@ export default function VisiApp() {
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x leading-tight">
                   Visi
                 </h1>
-                <p className="text-sm text-black/60 font-medium">Complete Dream Manifestation Platform</p>
+                <p className="text-sm text-gray-400 font-medium">Complete Dream Manifestation Platform</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <Button
                 onClick={() => setUseFreeAI(!useFreeAI)}
                 variant="outline"
-                className="bg-black/10 backdrop-blur-sm border-black/30 text-black hover:bg-black/20 transition-all duration-300"
+                className="bg-gray-800 backdrop-blur-sm border-gray-700 text-white hover:bg-gray-700 transition-all duration-300"
               >
                 {useFreeAI ? "Free AI" : "HF AI"}
               </Button>
               <Button
                 onClick={downloadVisionBoard}
-                className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-black border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 <Download className="h-4 w-4 mr-2" />
                 <span>Export</span>
@@ -429,16 +429,16 @@ export default function VisiApp() {
           ].map((stat, index) => (
             <Card
               key={stat.label}
-              className="bg-black/10 backdrop-blur-xl border-black/20 hover:bg-black/15 transition-all duration-300"
+              className="bg-gray-900/50 backdrop-blur-xl border-gray-800 hover:bg-gray-800/50 transition-all duration-300"
             >
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
                   <div className={`p-3 rounded-full bg-gradient-to-r ${stat.color}`}>
-                    <stat.icon className="h-6 w-6 text-black" />
+                    <stat.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold text-black">{stat.value}</p>
-                    <p className="text-sm text-black/60">{stat.label}</p>
+                    <p className="text-2xl font-bold text-white">{stat.value}</p>
+                    <p className="text-sm text-gray-400">{stat.label}</p>
                   </div>
                 </div>
               </CardContent>
@@ -448,22 +448,22 @@ export default function VisiApp() {
 
         {/* Main Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 bg-black/10 backdrop-blur-xl border-black/20">
-            <TabsTrigger value="create" className="data-[state=active]:bg-purple-500 data-[state=active]:text-black">
+          <TabsList className="grid w-full grid-cols-4 bg-gray-900/50 backdrop-blur-xl border-gray-800">
+            <TabsTrigger value="create" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
               <Plus className="h-4 w-4 mr-2" />
               Create
             </TabsTrigger>
-            <TabsTrigger value="visions" className="data-[state=active]:bg-purple-500 data-[state=active]:text-black">
+            <TabsTrigger value="visions" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
               <Eye className="h-4 w-4 mr-2" />
               My Visions
             </TabsTrigger>
-            <TabsTrigger value="tracking" className="data-[state=active]:bg-purple-500 data-[state=active]:text-black">
+            <TabsTrigger value="tracking" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
               <BarChart3 className="h-4 w-4 mr-2" />
               Progress
             </TabsTrigger>
             <TabsTrigger
               value="manifested"
-              className="data-[state=active]:bg-purple-500 data-[state=active]:text-black"
+              className="data-[state=active]:bg-purple-500 data-[state=active]:text-white"
             >
               <Trophy className="h-4 w-4 mr-2" />
               Manifested
@@ -472,11 +472,11 @@ export default function VisiApp() {
 
           {/* Create Tab */}
           <TabsContent value="create" className="mt-8">
-            <Card className="relative overflow-hidden bg-gradient-to-br from-black/10 to-black/5 backdrop-blur-xl border-2 border-dashed border-purple-300/50 hover:border-purple-300 transition-all duration-500 group">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <Card className="relative overflow-hidden bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-xl border-2 border-dashed border-purple-500/30 hover:border-purple-400/50 transition-all duration-500 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <CardHeader className="relative z-10">
-                <CardTitle className="flex items-center space-x-3 text-black">
+                <CardTitle className="flex items-center space-x-3 text-white">
                   <div className="relative">
                     <Brain className="h-6 w-6 animate-pulse" />
                     <div className="absolute inset-0 bg-purple-400/20 rounded-full animate-ping" />
@@ -485,7 +485,7 @@ export default function VisiApp() {
                     Create New Vision
                   </span>
                 </CardTitle>
-                <CardDescription className="text-black/70">
+                <CardDescription className="text-gray-400">
                   Design your dream with detailed manifestation steps and AI-powered visualization ✨
                 </CardDescription>
               </CardHeader>
@@ -498,7 +498,7 @@ export default function VisiApp() {
                         placeholder="✨ Vision Title (e.g., 'Dream Home', 'Perfect Career')"
                         value={newItem.title}
                         onChange={(e) => setNewItem((prev) => ({ ...prev, title: e.target.value }))}
-                        className="h-14 text-lg bg-black/10 backdrop-blur-sm border-black/30 text-black placeholder:text-black/50 focus:border-purple-400 focus:ring-purple-400/50"
+                        className="h-14 text-lg bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white placeholder:text-gray-400 focus:border-purple-400 focus:ring-purple-400/50"
                       />
                       <Lightbulb className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
                     </div>
@@ -508,7 +508,7 @@ export default function VisiApp() {
                         type="date"
                         value={newItem.targetDate}
                         onChange={(e) => setNewItem((prev) => ({ ...prev, targetDate: e.target.value }))}
-                        className="h-14 text-lg bg-black/10 backdrop-blur-sm border-black/30 text-black focus:border-purple-400 focus:ring-purple-400/50"
+                        className="h-14 text-lg bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white focus:border-purple-400 focus:ring-purple-400/50"
                       />
                       <Calendar className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-purple-400" />
                     </div>
@@ -520,7 +520,7 @@ export default function VisiApp() {
                       value={newItem.description}
                       onChange={(e) => setNewItem((prev) => ({ ...prev, description: e.target.value }))}
                       rows={5}
-                      className="text-lg bg-black/10 backdrop-blur-sm border-black/30 text-black placeholder:text-black/50 resize-none focus:border-purple-400 focus:ring-purple-400/50"
+                      className="text-lg bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white placeholder:text-gray-400 resize-none focus:border-purple-400 focus:ring-purple-400/50"
                     />
                     <Sparkles className="absolute right-4 top-4 h-5 w-5 text-purple-400 animate-pulse" />
                   </div>
@@ -539,7 +539,7 @@ export default function VisiApp() {
                           className={`relative overflow-hidden border-2 transition-all duration-300 transform hover:scale-105 ${
                             isSelected
                               ? `${category.color} ${category.textColor} border-transparent shadow-lg`
-                              : "bg-black/10 backdrop-blur-sm border-black/30 text-black hover:bg-black/20"
+                              : "bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white hover:bg-gray-700/50"
                           }`}
                         >
                           <category.icon className="h-4 w-4 mr-2" />
@@ -559,11 +559,11 @@ export default function VisiApp() {
                         className={`${
                           newItem.priority === priority
                             ? priority === "high"
-                              ? "bg-red-500 text-black border-red-500"
+                              ? "bg-red-500 text-white border-red-500"
                               : priority === "medium"
                                 ? "bg-yellow-500 text-black border-yellow-500"
-                                : "bg-green-500 text-black border-green-500"
-                            : "bg-black/10 backdrop-blur-sm border-black/30 text-black hover:bg-black/20"
+                                : "bg-green-500 text-white border-green-500"
+                            : "bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white hover:bg-gray-700/50"
                         }`}
                       >
                         {priority.charAt(0).toUpperCase() + priority.slice(1)} Priority
@@ -575,7 +575,7 @@ export default function VisiApp() {
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
                       <Target className="h-5 w-5 text-purple-400" />
-                      <h3 className="text-lg font-semibold text-black">Manifestation Steps</h3>
+                      <h3 className="text-lg font-semibold text-white">Manifestation Steps</h3>
                     </div>
                     {newItem.steps.map((step, index) => (
                       <div key={index} className="flex items-center space-x-2">
@@ -583,7 +583,7 @@ export default function VisiApp() {
                           placeholder={`Step ${index + 1}: What action will bring you closer?`}
                           value={step}
                           onChange={(e) => updateStep(index, e.target.value)}
-                          className="flex-1 bg-black/10 backdrop-blur-sm border-black/30 text-black placeholder:text-black/50"
+                          className="flex-1 bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white placeholder:text-gray-400"
                         />
                         {newItem.steps.length > 1 && (
                           <Button
@@ -600,7 +600,7 @@ export default function VisiApp() {
                     <Button
                       variant="outline"
                       onClick={addStep}
-                      className="w-full bg-black/10 backdrop-blur-sm border-black/30 text-black hover:bg-black/20"
+                      className="w-full bg-gray-800/50 backdrop-blur-sm border-gray-700 text-white hover:bg-gray-700/50"
                     >
                       <Plus className="h-4 w-4 mr-2" />
                       Add Step
@@ -610,9 +610,9 @@ export default function VisiApp() {
                   <Button
                     onClick={addVisionItem}
                     disabled={!newItem.title || !newItem.description}
-                    className="w-full h-16 text-lg font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 text-black border-0 shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
+                    className="w-full h-16 text-lg font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 text-white border-0 shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-black/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     <Rocket className="h-5 w-5 mr-2" />
                     <span>Create & Manifest Vision</span>
                   </Button>
@@ -634,19 +634,19 @@ export default function VisiApp() {
                     return (
                       <Card
                         key={item.id}
-                        className="group relative overflow-hidden bg-black/10 backdrop-blur-xl border-black/20 hover:bg-black/15 transition-all duration-500 transform hover:scale-105 hover:-translate-y-3"
+                        className="group relative overflow-hidden bg-gray-900/50 backdrop-blur-xl border-gray-800 hover:bg-gray-800/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-3"
                       >
                         <div className="relative z-10">
                           <div className="relative overflow-hidden rounded-t-lg">
                             {item.isGenerating ? (
-                              <div className="h-56 bg-gradient-to-br from-purple-900/50 via-pink-900/50 to-blue-900/50 flex items-center justify-center relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent animate-shimmer" />
+                              <div className="h-56 bg-gradient-to-br from-gray-800 via-gray-900 to-black flex items-center justify-center relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
                                 <div className="text-center z-10">
                                   <div className="relative mb-4">
                                     <Brain className="h-12 w-12 text-purple-400 mx-auto animate-spin-slow" />
                                     <div className="absolute inset-0 bg-purple-400/20 rounded-full animate-ping" />
                                   </div>
-                                  <p className="text-black/80 font-medium">Creating your vision...</p>
+                                  <p className="text-white/80 font-medium">Creating your vision...</p>
                                 </div>
                               </div>
                             ) : item.imageUrl ? (
@@ -689,7 +689,7 @@ export default function VisiApp() {
 
                           <CardHeader className="pb-3">
                             <div className="flex items-center justify-between">
-                              <CardTitle className="text-lg text-black group-hover:text-purple-800 transition-colors flex items-center space-x-2">
+                              <CardTitle className="text-lg text-white group-hover:text-purple-200 transition-colors flex items-center space-x-2">
                                 <span>{item.title}</span>
                                 <Badge
                                   className={`ml-2 ${
@@ -710,7 +710,7 @@ export default function VisiApp() {
                             </div>
 
                             <div className="space-y-2">
-                              <div className="flex items-center justify-between text-sm text-black/70">
+                              <div className="flex items-center justify-between text-sm text-gray-400">
                                 <span>Progress</span>
                                 <span>{completionPercentage}%</span>
                               </div>
@@ -719,11 +719,11 @@ export default function VisiApp() {
                           </CardHeader>
 
                           <CardContent>
-                            <p className="text-black/70 text-sm leading-relaxed mb-4">{item.description}</p>
+                            <p className="text-gray-300 text-sm leading-relaxed mb-4">{item.description}</p>
 
                             {/* Manifestation Steps */}
                             <div className="space-y-2 mb-4">
-                              <h4 className="text-sm font-semibold text-black flex items-center">
+                              <h4 className="text-sm font-semibold text-white flex items-center">
                                 <Target className="h-4 w-4 mr-2" />
                                 Steps to Manifest
                               </h4>
@@ -732,10 +732,10 @@ export default function VisiApp() {
                                   <Checkbox
                                     checked={step.completed}
                                     onCheckedChange={() => toggleStep(item.id, step.id)}
-                                    className="border-black/30"
+                                    className="border-gray-600"
                                   />
                                   <span
-                                    className={`text-sm ${step.completed ? "line-through text-black/50" : "text-black/80"}`}
+                                    className={`text-sm ${step.completed ? "line-through text-gray-500" : "text-gray-300"}`}
                                   >
                                     {step.title}
                                   </span>
@@ -743,7 +743,7 @@ export default function VisiApp() {
                               ))}
                             </div>
 
-                            <div className="flex items-center justify-between text-xs text-black/50 mb-4">
+                            <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
                               <span>Visualized {item.visualizationCount} times</span>
                               {item.targetDate && <span>Target: {item.targetDate.toLocaleDateString()}</span>}
                             </div>
@@ -752,9 +752,9 @@ export default function VisiApp() {
                               <Checkbox
                                 checked={item.isManifested}
                                 onCheckedChange={() => toggleManifested(item.id)}
-                                className="border-black/30"
+                                className="border-gray-600"
                               />
-                              <span className="text-sm text-black/80">Mark as Manifested</span>
+                              <span className="text-sm text-gray-300">Mark as Manifested</span>
                             </div>
                           </CardContent>
                         </div>
@@ -765,13 +765,13 @@ export default function VisiApp() {
             ) : (
               <div className="text-center py-20">
                 <Eye className="h-20 w-20 text-purple-400 mx-auto mb-8 animate-float" />
-                <h3 className="text-3xl font-bold text-black mb-4">No Visions Yet</h3>
-                <p className="text-black/60 text-lg max-w-md mx-auto mb-8">
+                <h3 className="text-3xl font-bold text-white mb-4">No Visions Yet</h3>
+                <p className="text-gray-400 text-lg max-w-md mx-auto mb-8">
                   Create your first vision and start your manifestation journey ✨
                 </p>
                 <Button
                   onClick={() => setActiveTab("create")}
-                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-black"
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Create First Vision
@@ -783,9 +783,9 @@ export default function VisiApp() {
           {/* Progress Tracking Tab */}
           <TabsContent value="tracking" className="mt-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-black/10 backdrop-blur-xl border-black/20">
+              <Card className="bg-gray-900/50 backdrop-blur-xl border-gray-800">
                 <CardHeader>
-                  <CardTitle className="text-black flex items-center">
+                  <CardTitle className="text-white flex items-center">
                     <TrendingUp className="h-5 w-5 mr-2" />
                     Progress Overview
                   </CardTitle>
@@ -801,9 +801,9 @@ export default function VisiApp() {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
                               <categoryInfo.icon className="h-4 w-4 text-purple-400" />
-                              <span className="text-black font-medium">{item.title}</span>
+                              <span className="text-white font-medium">{item.title}</span>
                             </div>
-                            <span className="text-black/70">{completion}%</span>
+                            <span className="text-gray-400">{completion}%</span>
                           </div>
                           <Progress value={completion} className="h-2" />
                         </div>
@@ -813,9 +813,9 @@ export default function VisiApp() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-black/10 backdrop-blur-xl border-black/20">
+              <Card className="bg-gray-900/50 backdrop-blur-xl border-gray-800">
                 <CardHeader>
-                  <CardTitle className="text-black flex items-center">
+                  <CardTitle className="text-white flex items-center">
                     <Clock className="h-5 w-5 mr-2" />
                     Recent Activity
                   </CardTitle>
@@ -827,15 +827,15 @@ export default function VisiApp() {
                       .sort((a, b) => (b.lastVisualized?.getTime() || 0) - (a.lastVisualized?.getTime() || 0))
                       .slice(0, 5)
                       .map((item) => (
-                        <div key={item.id} className="flex items-center space-x-3 p-3 bg-black/5 rounded-lg">
+                        <div key={item.id} className="flex items-center space-x-3 p-3 bg-gray-800/30 rounded-lg">
                           <Eye className="h-4 w-4 text-purple-400" />
                           <div className="flex-1">
-                            <p className="text-black font-medium">{item.title}</p>
-                            <p className="text-black/60 text-sm">
+                            <p className="text-white font-medium">{item.title}</p>
+                            <p className="text-gray-400 text-sm">
                               Visualized {item.lastVisualized?.toLocaleDateString()}
                             </p>
                           </div>
-                          <Badge variant="outline" className="text-black/70 border-black/30">
+                          <Badge variant="outline" className="text-gray-300 border-gray-600">
                             {item.visualizationCount}x
                           </Badge>
                         </div>
@@ -858,7 +858,7 @@ export default function VisiApp() {
                     return (
                       <Card
                         key={item.id}
-                        className="group relative overflow-hidden bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-xl border-green-500/30 hover:border-green-400/50 transition-all duration-500"
+                        className="group relative overflow-hidden bg-gradient-to-br from-green-900/30 to-emerald-900/30 backdrop-blur-xl border-green-700/50 hover:border-green-600/70 transition-all duration-500"
                       >
                         <div className="absolute top-4 right-4">
                           <Trophy className="h-6 w-6 text-yellow-400 animate-bounce" />
@@ -879,7 +879,7 @@ export default function VisiApp() {
 
                           <CardHeader>
                             <div className="flex items-center justify-between">
-                              <CardTitle className="text-black flex items-center space-x-2">
+                              <CardTitle className="text-white flex items-center space-x-2">
                                 <CheckCircle className="h-5 w-5 text-green-400" />
                                 <span>{item.title}</span>
                               </CardTitle>
@@ -891,8 +891,8 @@ export default function VisiApp() {
                           </CardHeader>
 
                           <CardContent>
-                            <p className="text-black/80 text-sm mb-4">{item.description}</p>
-                            <div className="flex items-center justify-between text-xs text-black/60">
+                            <p className="text-gray-300 text-sm mb-4">{item.description}</p>
+                            <div className="flex items-center justify-between text-xs text-gray-400">
                               <span>Manifested! 🎉</span>
                               <span>Visualized {item.visualizationCount} times</span>
                             </div>
@@ -905,8 +905,8 @@ export default function VisiApp() {
             ) : (
               <div className="text-center py-20">
                 <Trophy className="h-20 w-20 text-yellow-400 mx-auto mb-8 animate-bounce" />
-                <h3 className="text-3xl font-bold text-black mb-4">No Manifestations Yet</h3>
-                <p className="text-black/60 text-lg max-w-md mx-auto">
+                <h3 className="text-3xl font-bold text-white mb-4">No Manifestations Yet</h3>
+                <p className="text-gray-400 text-lg max-w-md mx-auto">
                   Keep visualizing and working on your visions. Your first manifestation is coming! ✨
                 </p>
               </div>
